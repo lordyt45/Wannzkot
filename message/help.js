@@ -8,6 +8,10 @@ const ucapanWaktu = "Selamat "+dt.charAt(0).toUpperCase() + dt.slice(1)
 let setting = JSON.parse(fs.readFileSync('./config.json'))
 const { getLimit, getBalance, cekGLimit } = require("../lib/limit")
 
+let now = moment(); // Waktu saat ini
+let formattedTime = now.format('HH:mm:ss'); // Format jam:menit:detik
+let formattedDate = now.format('DD-MM-YYYY'); // Format tanggal
+
 const more = String.fromCharCode(8206)
 const readmore = more.repeat(4001)
 
@@ -26,6 +30,8 @@ Status : ${isOwner ? 'Owner' : isPremium ? 'Premium' : 'Free'}
 Limit Harian : ${isOwner ? '-' : isPremium ? 'Unlimited' : getLimit(sender, limitCount, limit)}
 Limit Game : ${isOwner ? '-' : cekGLimit(sender, gcount, glimit)}
 Balance : $${toCommas(getBalance(sender, balance))}
+Waktu : ${formattedtime}
+Tanggal : ${formatteddate}
 
 *Main Menu*
 ${prefix}menu
